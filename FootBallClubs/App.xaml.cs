@@ -11,6 +11,9 @@ namespace FootBallClubs
 
     public partial class App : Application
     {
+        public App()
+        {
 
+        }
     }
 }

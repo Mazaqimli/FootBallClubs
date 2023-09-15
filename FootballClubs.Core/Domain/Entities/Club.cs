@@ -1,4 +1,5 @@
 ﻿using FootballClubs.Core.Domain.Enums;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace FootballClubs.Core.Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string TotalPower { get; set; }
-        public TacticalPlan Tactical { get; set; }
-
-        public List<Country> Countries { get; set; }
+        public decimal TotalPower { get; set; }
+        public TacticalPlan TacticalPlan { get; set; }
+        public int LeagueId { get;  set; }
+        public int CountryId { get;  set; }
+        public Country Country{ get; set; }
+        public League League{ get; set; }
     }
 }

@@ -24,12 +24,11 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "insert into countries values(name)";
+            const string query = "insert into countries values(@name)";
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
             cmd.Parameters.AddWithValue("name", country.Name);
-
             cmd.ExecuteNonQuery();
         }
 
@@ -51,12 +50,14 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "update countries set name = @name";
+            const string query = "update countries set name = @name  where id = @id";
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
-            cmd.Parameters.AddWithValue("name", country.Name);
             cmd.Parameters.AddWithValue("id", country.Id);
+            cmd.Parameters.AddWithValue("name", country.Name);
+
+            cmd.ExecuteNonQuery();
         }
         public Country Get(int id)
         {

@@ -26,7 +26,7 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             using SqlConnection connection = new SqlConnection(_connectionString) ;
             connection.Open();
 
-            const string query = "Insert into leagues value(@name)";
+            const string query = "insert into leagues value(@name)";
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
