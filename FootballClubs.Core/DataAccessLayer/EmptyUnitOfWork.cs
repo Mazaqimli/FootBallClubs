@@ -15,6 +15,8 @@ namespace FootballClubs.Core.DataAccessLayer
 
         public ICountryRepository CountryRepository => throw new NotImplementedException();
 
+        public IUserRepository UserRepository => throw new NotImplementedException();
+
         public bool IsOnline()
         {
             return false;

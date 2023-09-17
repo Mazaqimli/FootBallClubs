@@ -40,7 +40,7 @@ namespace FootBallClubs.Views
             if (ApplicationContext.DB.IsOnline())
             {
                 LoginWindow window = new LoginWindow();
-                //Window.DataContext = 
+                window.DataContext = new LoginWindowViewModel(window); 
 
                 window.Show();
                 this.Close();

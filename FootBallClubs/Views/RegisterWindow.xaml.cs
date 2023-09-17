@@ -15,16 +15,16 @@ using System.Windows.Shapes;
 namespace FootBallClubs.Views
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for RegisterWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class RegisterWindow : Window
     {
-        public LoginWindow()
+        public RegisterWindow()
         {
             InitializeComponent();
         }
 
-        private void login_Click(object sender, RoutedEventArgs e)
+        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

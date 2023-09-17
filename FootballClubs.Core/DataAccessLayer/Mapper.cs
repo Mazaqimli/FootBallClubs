@@ -66,12 +66,15 @@ namespace FootballClubs.Core.DataAccessLayer
                 },
                 TotalPower = (decimal)reader["TotalPower"],
                 TacticalPlan = (TacticalPlan)reader["TacticalPlan"],
-
-
-
-
-
-
+            };
+        }
+        public static User MapUser(IDataReader reader)
+        {
+            return new User
+            {
+                Username = (string)reader["username"],
+                Email = (string)reader["email"],
+                PasswordHash = (string)reader["passwordHash"]
             };
         }
     }
