@@ -77,5 +77,14 @@ namespace FootballClubs.Core.DataAccessLayer
                 PasswordHash = (string)reader["passwordHash"]
             };
         }
+        public static Player MapPlayer(IDataReader reader)
+        {
+            return new Player
+            {
+                Id = (int)reader["id"],
+                FullName = (string)reader["fullName"],
+                ClubId = (int)reader["clubId"]
+            };
+        }
     }
 }

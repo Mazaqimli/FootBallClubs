@@ -56,7 +56,7 @@ namespace FootBallClubs.Commands.ConfigurationCommands
 
             helper.SaveSettings(appSettings);
 
-            WindowStart startWindow = new WindowStart();
+            StartWindow startWindow = new StartWindow();
             startWindow.Show();
             _viewModel.Window.Close();
 

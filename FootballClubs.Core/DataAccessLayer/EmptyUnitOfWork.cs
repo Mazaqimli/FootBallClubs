@@ -14,6 +14,7 @@ namespace FootballClubs.Core.DataAccessLayer
         public ILeagueRepository LeagueRepository => throw new NotImplementedException();
 
         public ICountryRepository CountryRepository => throw new NotImplementedException();
+        public IPlayerRepository PlayerRepository => throw new NotImplementedException();
 
         public IUserRepository UserRepository => throw new NotImplementedException();
 

@@ -39,17 +39,19 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "select * from users username = @username";
+            const string query = "select * from users where username = @username";
             SqlCommand cmd = new SqlCommand(query, connection);
 
             cmd.Parameters.AddWithValue("username", username);
 
             SqlDataReader reader = cmd.ExecuteReader();
+            
+                if (reader.Read())
+                {
+                    return Mapper.MapUser(reader);
+                }
+            
 
-            if (reader.Read())
-            {
-                return Mapper.MapUser(reader);
-            }
             return null;
 
         }

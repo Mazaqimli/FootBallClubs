@@ -19,9 +19,9 @@ namespace FootBallClubs.Views
     /// <summary>
     /// Interaction logic for WindowStart.xaml
     /// </summary>
-    public partial class WindowStart : Window
+    public partial class StartWindow : Window
     {
-        public WindowStart()
+        public StartWindow()
         {
             InitializeComponent();
         }

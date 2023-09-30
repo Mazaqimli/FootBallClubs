@@ -28,7 +28,7 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "insert into Clubs(leagueId,countryId) values (@name, @totalPower, @tacticalPlan,@leagueId,@countryId)";
+            const string query = "insert into clubs output inserted.id values (@name, @totalPower, @tacticalPlan,@leagueId,@countryId)";
 
             SqlCommand cmd = new SqlCommand (query, connection);
 
@@ -38,7 +38,7 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             cmd.Parameters.AddWithValue("leagueId", club.LeagueId);
             cmd.Parameters.AddWithValue("countryId", club.CountryId);
 
-            cmd.ExecuteNonQuery();
+            club.Id = (int)cmd.ExecuteScalar();
         }
 
         public void Delete(Club club)
@@ -89,7 +89,7 @@ where cs.id =@id";
             return null;
         }
 
-        public List<Club> Get(Club club)
+        public List<Club> Get()
         {
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
@@ -165,5 +165,10 @@ where cy.id =@id";
             }
             return Club;
         }
+
+        //public List<Club> Get()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

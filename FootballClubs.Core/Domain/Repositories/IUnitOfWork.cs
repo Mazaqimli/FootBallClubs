@@ -14,6 +14,7 @@ namespace FootballClubs.Core.Domain.Repositories
         public IClubRepository ClubRepository { get; }
         public ILeagueRepository LeagueRepository { get; }
         public ICountryRepository CountryRepository { get; }
+        public IPlayerRepository PlayerRepository { get; }
         public IUserRepository UserRepository { get; }
         bool IsOnline();
     }

@@ -1,39 +1,36 @@
 ﻿using FootballClubs.Core.Domain.Entities;
 using FootballClubs.Core.Domain.Repositories;
 using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FootballClubs.Core.DataAccessLayer.SqlServer
 {
-    public class SqlLeagueRepository : ILeagueRepository
+    public class SqlPlayerRepository : IPlayerRepository
     {
         private readonly string _connectionString;
 
-        public SqlLeagueRepository(string connectionString)
+        public SqlPlayerRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public void Add(League league)
+        public void Add(Player player)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString) ;
+            using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "insert into leagues output inserted.Id values(@name)";
+            const string query = "insert into players output inserted.id values(@fullName ,@clubId)";
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
-            cmd.Parameters.AddWithValue("name" ,league.Name);
+            cmd.Parameters.AddWithValue("fullName", player.FullName);
+            cmd.Parameters.AddWithValue("clubId", player.ClubId);
 
-            league.Id = (int)cmd.ExecuteScalar();
-
+            player.Id = (int)cmd.ExecuteScalar();
         }
 
         public void Delete(int id)
@@ -41,7 +38,7 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "Delete from leagues where id = @id";
+            const string query = "delete from players where id = @id";
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
@@ -49,61 +46,64 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
 
             cmd.ExecuteNonQuery();
         }
-
-        public void Update(League league)
+        public void Update(Player player)
         {
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "Update leagues set name = @name where id = @id";
+            const string query = "update players set fullName = @fullName, clubId = @clubId where id = @id";
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
-            cmd.Parameters.AddWithValue("id", league.Id);
-            cmd.Parameters.AddWithValue("name", league.Name);
+            cmd.Parameters.AddWithValue("id", player.Id);
+            cmd.Parameters.AddWithValue("fullName", player.FullName);
+            cmd.Parameters.AddWithValue("clubId", player.ClubId);
 
             cmd.ExecuteNonQuery();
         }
-
-        public League Get(int id)
+        public Player Get(int id)
         {
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "Select * from leagues where id = @id";
+            const string query = "select * from players where id = @id";
 
             SqlCommand cmd = new SqlCommand(query, connection);
+
             cmd.Parameters.AddWithValue("id", id);
 
             SqlDataReader reader = cmd.ExecuteReader();
-                if(reader.Read())
-                {
 
-                return Mapper.MapLeague(reader);
-                }
+            if (reader.Read())
+            {
+                return Mapper.MapPlayer(reader);
+            }
+
             return null;
         }
 
-        public List<League> Get()
+        public List<Player> Get()
         {
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "Select * from leagues";
+            const string query = "select * from players";
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
             SqlDataReader reader = cmd.ExecuteReader();
 
-            List<League> result = new List<League>();
+            List<Player> players = new List<Player>();
 
             while (reader.Read())
             {
-                League league = Mapper.MapLeague(reader);
-                result.Add(league);
+                Player player = Mapper.MapPlayer(reader);
+
+                players.Add(player);
             }
 
-            return result; 
+            return players;
         }
+
     }
 }

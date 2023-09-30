@@ -1,6 +1,7 @@
 ﻿using FootballClubs.Core.Domain.Entities;
 using FootBallClubs.Utils;
 using FootBallClubs.ViewModels;
+using FootBallClubs.Views;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -51,7 +52,18 @@ namespace FootBallClubs.Commands.LoginCommands
                 return;
             }
 
-            MessageBox.Show("logged in");
+            ApplicationContext.CurrentUser = user;
+            AdminWindow window = new AdminWindow();
+
+            AdminWindowViewModel viewModel = new AdminWindowViewModel(window);
+            viewModel.CenterGrid = window.grdCenter;
+
+
+            //TODO: (add viewmodel to data context) <-- this is already written
+            //ctrl + shif + f to search
+            window.DataContext = viewModel;
+            window.Show();
+            _loginWindowViewModel.Window.Close();
 
         }
         private void Fail(string username)

@@ -1,4 +1,5 @@
-﻿using FootballClubs.Core.Domain.Enums;
+﻿using FootballClubs.Core.Domain.Entities;
+using FootballClubs.Core.Domain.Enums;
 using FootballClubs.Core.Domain.Repositories;
 using FootBallClubs.Factories;
 using FootBallClubs.Settings;
@@ -44,6 +45,7 @@ namespace FootBallClubs
 
         public static AppSettings Settings { get; private set; }
         public static IUnitOfWork DB { get; private set;}
+        public static User CurrentUser { get; set; }
         public static void Initalize()
         {
             Settings = InitalilzeSettings();
