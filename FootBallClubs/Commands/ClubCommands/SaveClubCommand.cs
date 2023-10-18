@@ -30,6 +30,7 @@ namespace FootBallClubs.Commands.ClubCommands
         {
             Club club = new Club
             {
+                Id = _viewModel.ClubModel.Id,
                 Name = _viewModel.ClubModel.Name,
                 TacticalPlan = _viewModel.ClubModel.TacticalPlan,
                 TotalPower = _viewModel.ClubModel.TotalPower,
@@ -37,8 +38,17 @@ namespace FootBallClubs.Commands.ClubCommands
                 CountryId = _viewModel.ClubModel.CountryId,
             };
 
-            ApplicationContext.DB.ClubRepository.Add(club);
-            _viewModel.ClubModel.Id = club.Id;
+            if(club.Id > 0)
+            {
+                this.UpdateClub(club);
+            }
+            else
+            {
+                ApplicationContext.DB.ClubRepository.Add(club);
+                _viewModel.ClubModel.Id = club.Id;
+                _viewModel.Parent.ClubModels.Add(_viewModel.ClubModel);
+            }
+
 
             foreach(PlayerModel model in _viewModel.SelectedPlayers)
             {
@@ -49,8 +59,14 @@ namespace FootBallClubs.Commands.ClubCommands
 
                 ApplicationContext.DB.PlayerRepository.Add(player);
             }
-            _viewModel.Parent.ClubModels.Add(_viewModel.ClubModel);
-            _viewModel.Window.Close();
+
+ 
+                _viewModel.Window.Close();
+        }
+
+        private void UpdateClub(Club club)
+        {
+            ApplicationContext.DB.ClubRepository.DeleteByPlayer(club.Id);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace FootballClubs.Core.DataAccessLayer
         {
             return new Club
             {
-                
+
                 Id = (int)reader["ClubId"],
                 Name = (string)reader["ClubName"],
 
@@ -66,6 +66,11 @@ namespace FootballClubs.Core.DataAccessLayer
                 },
                 TotalPower = (decimal)reader["TotalPower"],
                 TacticalPlan = (TacticalPlan)reader["TacticalPlan"],
+                Player = new Player
+                {
+                    Id = (int)reader["ClubId"],
+                    FullName = (string)reader["FullName"]
+                },
             };
         }
         public static User MapUser(IDataReader reader)

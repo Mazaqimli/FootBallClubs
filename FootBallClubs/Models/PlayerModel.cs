@@ -10,6 +10,11 @@ namespace FootBallClubs.Models
     {
         public int Id { get; set; }
         public string FullName { get; set; }
-        public int ClubId { get; set; } 
+        public int ClubId { get; set; }
+
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }

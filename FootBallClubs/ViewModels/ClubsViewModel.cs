@@ -1,5 +1,6 @@
 ﻿using FootballClubs.Core.Domain.Entities;
 using FootBallClubs.Commands.ClubCommands;
+using FootBallClubs.Commands.PlayersCommands;
 using FootBallClubs.Models;
 using FootBallClubs.ViewModels.Abstract;
 using System;
@@ -18,6 +19,8 @@ namespace FootBallClubs.ViewModels
         public ClubsViewModel() 
         {
             OpenAddClub = new OpenSaveClubCommand(this);
+            OpenUpdateClub = new OpenSaveClubCommand(this).SetUpdate();
+            OpenDeleteClub = new OpenDeleteClubCommand(this);
         }
         public ObservableCollection<ClubModel> ClubModels { get; set; }
         public ICommand OpenAddClub { get; set; }

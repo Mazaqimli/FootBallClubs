@@ -11,11 +11,14 @@ namespace FootballClubs.Core.Domain.Repositories
     {
         void Add(Club club);
         void Update(Club club);
-        void Delete (Club club); 
+        void Delete(int id);
+        void DeleteByPlayer(int id);
         Club Get(int id);
         List<Club> Get();
+
+        List<Club> GetByClubId(int id);
+
         List<Club> GetByLeagueId(int id);
         List<Club> GetByCountryId(int id);
-
     }
 }

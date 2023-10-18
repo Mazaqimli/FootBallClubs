@@ -24,13 +24,13 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
 
         public void Add(Club club)
         {
-            
+
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
             const string query = "insert into clubs output inserted.id values (@name, @totalPower, @tacticalPlan,@leagueId,@countryId)";
 
-            SqlCommand cmd = new SqlCommand (query, connection);
+            SqlCommand cmd = new SqlCommand(query, connection);
 
             cmd.Parameters.AddWithValue("name", club.Name);
             cmd.Parameters.AddWithValue("totalPower", club.TotalPower);
@@ -41,7 +41,7 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             club.Id = (int)cmd.ExecuteScalar();
         }
 
-        public void Delete(Club club)
+        public void Delete(int id)
         {
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
@@ -50,7 +50,7 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
-            cmd.Parameters.AddWithValue("id", club.Id);
+            cmd.Parameters.AddWithValue("id", id);
 
             cmd.ExecuteNonQuery();
         }
@@ -59,8 +59,12 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            const string query = "update clubs set name = @name, totalPower = @totalPower , tacticalPlan = @tacticalPla";
+            const string query = "update clubs set name = @name, totalPower = @totalPower , tacticalPlan = @tacticalPlan";
             SqlCommand cmd = new SqlCommand(query, connection);
+
+            cmd.Parameters.AddWithValue("name", club.Name);
+            cmd.Parameters.AddWithValue("totalPower", club.TotalPower);
+            cmd.Parameters.AddWithValue("tacticalPlan", club.TacticalPlan);
 
             cmd.ExecuteNonQuery();
         }
@@ -165,10 +169,51 @@ where cy.id =@id";
             }
             return Club;
         }
+        public List<Club> GetByClubId(int id)
+        {
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-        //public List<Club> Get()
-        //{
-        //    throw new NotImplementedException();
-        //}
+            const string query = @"select cs.Id ClubId , cs.Name ClubName, cs.CountryId, cy.Name CountryName, 
+cs.LeagueId, pl.FullName, l.Name LeagueName, cs.TotalPower, cs.TacticalPlan
+from Clubs cs
+join Leagues l on l.Id = cs.LeagueId
+join Countries cy on cy.Id = cs.CountryId
+join Players pl on pl.ClubId = cs.Id
+where cy.id = @id";
+            SqlCommand cmd = new SqlCommand(query, connection);
+
+            cmd.Parameters.AddWithValue("id", id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            List<Club> clubs = new List<Club>();
+
+            while (reader.Read())
+            {
+                Club club = Mapper.MapClubJoin(reader);
+
+                clubs.Add(club);
+            }
+            return clubs;
+
+            //public List<Club> Get()
+            //{
+            //    throw new NotImplementedException();
+            //}
+        }
+
+        public void DeleteByPlayer(int id)
+        {
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            const string query = "delete from clubs where id = @clubId";
+            SqlCommand cmd = new SqlCommand(query, connection);
+
+            cmd.Parameters.AddWithValue("clubId", id);
+
+            cmd.ExecuteNonQuery();
+        }
     }
 }

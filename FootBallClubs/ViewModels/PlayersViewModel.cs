@@ -25,7 +25,7 @@ namespace FootBallClubs.ViewModels
         public ICommand OpenAddPlayer { get; set; }
         public ICommand OpenUpdatePlayer { get; set; }
         public ICommand OpenDeletePlayer { get; set; }
-        public int SelectedPlayerIndex { get; set; } 
+        public int SelectedPlayerIndex { get; set; }
 
         public void Load()
         {

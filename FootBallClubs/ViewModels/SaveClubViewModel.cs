@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace FootBallClubs.ViewModels
 {
-    public class SaveClubViewModel : BaseWindowViewModel, IDataLoader
+    public class SaveClubViewModel : BaseWindowViewModel
     {
         public SaveClubViewModel(Window window, ClubsViewModel parent) : base(window)
         {
@@ -40,12 +40,10 @@ namespace FootBallClubs.ViewModels
         public List<TacticalPlan> TacticalPlan { get; set; }
 
 
-        public void Load()
+        public void Load(List<Player> players)
         {
-            List<Player> players = ApplicationContext.DB.PlayerRepository.Get();
-
-            this.Players = new ObservableCollection<PlayerModel>();
-
+            //List<Player> players = ApplicationContext.DB.PlayerRepository.Get();
+            //this.Players = new ObservableCollection<PlayerModel>();
             foreach (Player player in players)
             {
                 PlayerModel model = new()

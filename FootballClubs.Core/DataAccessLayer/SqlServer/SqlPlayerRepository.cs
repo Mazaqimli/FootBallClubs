@@ -104,6 +104,5 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
 
             return players;
         }
-
     }
 }

@@ -16,7 +16,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel  Grid.Row="0" Height="120">
-                <TextBlock Text="Football Players Manager" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontStyle="Italic" FontFamily="Times new roman" Margin="10 15 10 10"/>
+                <TextBlock Text="Football Clubs Manager" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontStyle="Italic" FontFamily="Times new roman" Margin="10 15 10 10"/>
                 <ProgressBar  x:Name="progressBar" Background="Blue" Foreground="Orange"  IsIndeterminate="True"  Height="10" Margin="10 15 10 0"/>
                 <Line Stretch="Fill" Stroke="Black" X2="1" VerticalAlignment="Bottom"/>
             </StackPanel>
