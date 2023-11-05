@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootBallClubs", "FootBallClubs\FootBallClubs.csproj", "{A790D91B-ECF2-4DF0-A7EC-FF05EACABC14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballClubs.Core", "FootballClubs.Core\FootballClubs.Core.csproj", "{2856B9B2-152B-4D64-A3EE-CB0CB145BC85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballClubs.Core", "FootballClubs.Core\FootballClubs.Core.csproj", "{2856B9B2-152B-4D64-A3EE-CB0CB145BC85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootBallClubsWebVersion", "FootBallClubsWebVersion\FootBallClubsWebVersion.csproj", "{9687BA6C-65BE-4B1E-91EA-FC0C9145ED84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2856B9B2-152B-4D64-A3EE-CB0CB145BC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2856B9B2-152B-4D64-A3EE-CB0CB145BC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2856B9B2-152B-4D64-A3EE-CB0CB145BC85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9687BA6C-65BE-4B1E-91EA-FC0C9145ED84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9687BA6C-65BE-4B1E-91EA-FC0C9145ED84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9687BA6C-65BE-4B1E-91EA-FC0C9145ED84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9687BA6C-65BE-4B1E-91EA-FC0C9145ED84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
