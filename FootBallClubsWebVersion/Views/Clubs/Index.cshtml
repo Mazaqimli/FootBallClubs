@@ -48,6 +48,11 @@
     .update-btn {
         background-color: #FFC107;
         color: black;
+
+    }    .delete-btn {
+        background-color: red;
+        color: white;
+
     }
 </style>
 
@@ -79,7 +84,10 @@
                     <td class="local-td">@m.LeagueId</td>
                     <td class="local-td">@m.CountryId</td>
                     <td>
-                        <button class="update-btn local-button">Update</button>
+                        <a asp-action ="Update" asp-route-clubId="@m.Id" class="update-btn local-button">Update</a>
+@*                        <br>
+*@                        <a asp-action ="Delete" asp-route-clubId="@m.Id" class="delete-btn local-button">Delete</a>
+
                     </td>
                 </tr>
             }

@@ -91,5 +91,20 @@ namespace FootballClubs.Core.DataAccessLayer
                 ClubId = (int)reader["clubId"]
             };
         }
+        public static UserRole MapUserRole(IDataReader reader)
+        {
+            return new UserRole
+            {
+                Id = (int)reader["Id"],
+                RoleId = (int)reader["RoleId"],
+                UserId = (int)reader["UserId"],
+                User = new User
+                {
+                    Id = (int)reader["UserId"],
+                    Email = (string)reader["Email"],
+                    PasswordHash = (string)reader["PasswordHash"],
+                    Username = (string)reader["Username"], 
+            }
+        }
     }
 }

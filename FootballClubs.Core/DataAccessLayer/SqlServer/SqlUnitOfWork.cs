@@ -25,6 +25,8 @@ namespace FootballClubs.Core.DataAccessLayer.SqlServer
         public ICountryRepository CountryRepository => new SqlCountryRepository(_connectionString);
         public IPlayerRepository PlayerRepository => new SqlPlayerRepository(_connectionString);
         public IUserRepository  UserRepository => new SqlUserRepository(_connectionString);
+        public IRoleRepository RoleRepository => new SqlRoleRepository(_connectionString);
+        public IUserRoleRepository UserRoleRepository => new SqlUserRoleRepository(_connectionString);
         public bool IsOnline()
         {
             try

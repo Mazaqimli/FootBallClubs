@@ -1,0 +1,89 @@
+﻿@model ClubModel
+
+<style>
+    .local-body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        width: 400px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .local-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .local-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .local-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #2E86C1;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .local-button:hover {
+            background-color: #21618C;
+        }
+</style>
+
+<div class="local-body">
+    <div class="form-container">
+        <form asp-action="Update">
+            <input asp-for ="Id" hidden />
+            <div class="form-group">
+                <label asp-for="Name" class="local-label">Club Name</label>
+                <input asp-for="Name" class="local-input" type="text">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPower" class="local-label">TotalPower</label>
+                <input asp-for="TotalPower" class="local-input" type="text">
+                <span class="text-danger" asp-validation-for="TotalPower"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TacticalPlan" class="local-label">TacticalPlan</label>
+                <select class="local-input" asp-for="TacticalPlan" asp-items="ViewBag.Plans"></select>
+                <span class="text-danger" asp-validation-for="TacticalPlan"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeagueId" class="local-label">LeagueId</label>
+                <input asp-for="LeagueId" class="local-input" type="text">
+                <span class="text-danger" asp-validation-for="LeagueId"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="local-label">CountryId</label>
+                <input asp-for="CountryId" class="local-input" type="text">
+                <span class="text-danger" asp-validation-for="CountryId"></span>
+            </div>
+            <button class="local-button" type="submit">Update Club</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+}
