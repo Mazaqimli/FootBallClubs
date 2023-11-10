@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FootballClubs.Core.Domain.Repositories
 {
-    internal class IRoleRepository
+    public interface IRoleRepository
     {
     }
 }

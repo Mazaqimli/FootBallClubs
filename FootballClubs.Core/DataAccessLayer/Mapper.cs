@@ -103,8 +103,9 @@ namespace FootballClubs.Core.DataAccessLayer
                     Id = (int)reader["UserId"],
                     Email = (string)reader["Email"],
                     PasswordHash = (string)reader["PasswordHash"],
-                    Username = (string)reader["Username"], 
-            }
+                    Username = (string)reader["Username"],
+                }
+            };
         }
     }
 }
